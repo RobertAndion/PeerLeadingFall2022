@@ -57,3 +57,37 @@ void printLinkedList(struct linked_list LL) // Print out all values in a Linked 
         p = p->next;
     }
 }
+
+// Searching a linked list
+struct node* searchList(struct linked_list LL, double x) {
+    if (LL.head == NULL) {
+        return NULL;
+    }
+    struct node* p = LL.head;
+
+    for(;p != NULL; p=p->next) {
+        if(p->value == x) {
+            return p;
+        }
+    }
+    return NULL;
+}
+
+// Converting array to linked list
+
+struct linked_list* arrayToList(double* arr, int size) {
+    if (arr == NULL || size == 0) {
+        return NULL;
+    }
+    struct linked_list* ret = malloc(sizeof(struct linked_list));
+    ret->head = NULL;
+    ret->size = 0;
+    double *d = arr;
+
+    for(; d < arr + size; d++) {
+        if(push_back(ret,*d) == NULL) {
+            break;
+        }
+    } 
+    return ret;
+}
